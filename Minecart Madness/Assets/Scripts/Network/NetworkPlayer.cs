@@ -4,10 +4,16 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem.XR;
+using Unity.XR.CoreUtils;
+using XRController = UnityEngine.XR.Interaction.Toolkit.XRController;
 
 public class NetworkPlayer : NetworkBehaviour
 {
     [SerializeField] Transform cartTransform;
+
+    [SerializeField] private XROrigin origin;
+    [SerializeField] private XRController leftController;
+    [SerializeField] private XRController rightController;
 
     public override void OnNetworkSpawn()
     {

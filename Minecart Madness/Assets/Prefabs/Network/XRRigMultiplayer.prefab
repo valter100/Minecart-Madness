@@ -566,6 +566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7751819173756736026}
+  - component: {fileID: 6566714747760908525}
   - component: {fileID: 7751819173756736029}
   - component: {fileID: 7751819173756736028}
   - component: {fileID: 7751819173756736020}
@@ -575,7 +576,6 @@ GameObject:
   - component: {fileID: 7751819173756736024}
   - component: {fileID: 7751819173756736027}
   - component: {fileID: 7751819173756736021}
-  - component: {fileID: 6566714747760908525}
   m_Layer: 0
   m_Name: XRRigMultiplayer
   m_TagString: Untagged
@@ -599,6 +599,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6566714747760908525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7751819173756736031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc81894a5cadfc740886c28fc1f8eeea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cartTransform: {fileID: 0}
+  origin: {fileID: 7751819173756736029}
+  leftController: {fileID: 0}
+  rightController: {fileID: 0}
 --- !u!114 &7751819173756736029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,19 +823,6 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &6566714747760908525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7751819173756736031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc81894a5cadfc740886c28fc1f8eeea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cartTransform: {fileID: 0}
 --- !u!1 &7751819174019921170
 GameObject:
   m_ObjectHideFlags: 0
