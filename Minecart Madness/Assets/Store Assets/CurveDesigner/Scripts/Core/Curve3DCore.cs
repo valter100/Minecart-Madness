@@ -167,7 +167,7 @@ namespace ChaseMacMillan.CurveDesigner
                 foreach (var i in positionCurve.PointGroups)
                     dict.Add(i.GUID, i);
             } 
-            catch (ArgumentException e)
+            catch
             {
                 //This catches a weird issue
                 //Where if you undo, OnAfterDeserialization gets called multiple times, and the first few times the points haven't been full deserialized
@@ -239,7 +239,7 @@ namespace ChaseMacMillan.CurveDesigner
             }
         }
 
-        public MeshCollider collider;
+        public new MeshCollider collider;
         public MeshFilter Filter { 
             get
             {

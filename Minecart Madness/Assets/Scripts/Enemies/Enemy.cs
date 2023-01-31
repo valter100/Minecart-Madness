@@ -15,4 +15,14 @@ public class Enemy : MonoBehaviour
     {
         
     }
+
+    public void TakeDamage(float damage)
+    {
+
+    }
+
+    public void Stun(float seconds)
+    {
+
+    }
 }

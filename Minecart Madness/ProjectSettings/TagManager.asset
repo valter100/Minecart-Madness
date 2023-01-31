@@ -5,16 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cart
+  - Projectile
+  - Enemy
+  - Usable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Environment
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy
+  - Usable
+  - Projectile
   - 
   - 
   - 

@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : MonoBehaviour
+public abstract class Spell : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private string displayName;
+    [TextArea()]
+    [SerializeField] private string description;
+
+    [SerializeField] protected GameObject[] projectilePrefabs;
+    
+    private void Start()
     {
-        
+        Cast();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected abstract void Cast();
+
+    /// <summary>
+    /// Call when spell has finished casting to destroy it
+    /// </summary>
+    protected void Finished()
     {
-        
+        Destroy(gameObject);
     }
 }

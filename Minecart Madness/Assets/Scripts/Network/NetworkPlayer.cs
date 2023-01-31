@@ -5,19 +5,17 @@ using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem.XR;
 using Unity.XR.CoreUtils;
-using XRController = UnityEngine.XR.Interaction.Toolkit.XRController;
 
 public class NetworkPlayer : NetworkBehaviour
 {
     [SerializeField] Transform cartTransform;
 
     [SerializeField] private XROrigin origin;
-    [SerializeField] private XRController leftController;
-    [SerializeField] private XRController rightController;
+    [SerializeField] private ActionBasedController leftController;
+    [SerializeField] private ActionBasedController rightController;
 
     public override void OnNetworkSpawn()
     {
-        
         base.OnNetworkSpawn();
     }
 
@@ -37,7 +35,7 @@ public class NetworkPlayer : NetworkBehaviour
             clientTurnProvider.enableTurnAround = false;
             clientHead.enabled = false;
 
-            foreach(var controller in clientControllers)
+            foreach (var controller in clientControllers)
             {
                 controller.enableInputActions = false;
                 controller.enableInputTracking = false;
@@ -49,7 +47,7 @@ public class NetworkPlayer : NetworkBehaviour
     {
         cartTransform = GameObject.FindGameObjectWithTag("Cart").transform;
 
-        if(IsClient && IsOwner)
+        if (IsClient && IsOwner)
         {
             transform.parent = cartTransform;
             transform.localPosition = Vector3.zero;
