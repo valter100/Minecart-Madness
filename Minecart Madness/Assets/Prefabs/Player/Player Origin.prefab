@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4176172381209093259
 Transform:
   m_ObjectHideFlags: 0
@@ -856,6 +856,7 @@ MonoBehaviour:
   origin: {fileID: 4176172382449855538}
   leftController: {fileID: 0}
   rightController: {fileID: 0}
+  cameraObject: {fileID: 4176172381209093254}
 --- !u!114 &4176172382449855538
 MonoBehaviour:
   m_ObjectHideFlags: 0

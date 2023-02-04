@@ -9,13 +9,16 @@ using Unity.XR.CoreUtils;
 public class NetworkPlayer : NetworkBehaviour
 {
     [SerializeField] Transform cartTransform;
-
     [SerializeField] private XROrigin origin;
     [SerializeField] private ActionBasedController leftController;
     [SerializeField] private ActionBasedController rightController;
+    [SerializeField] GameObject cameraObject;
 
     public override void OnNetworkSpawn()
     {
+        if (IsOwner)
+            cameraObject.SetActive(true);
+
         base.OnNetworkSpawn();
     }
 
@@ -45,14 +48,14 @@ public class NetworkPlayer : NetworkBehaviour
 
     private void Start()
     {
-        cartTransform = GameObject.FindGameObjectWithTag("Cart").transform;
+        Cart cart  = GameObject.FindGameObjectWithTag("Cart").GetComponent<Cart>();
 
-        if (IsClient && IsOwner)
-        {
-            transform.parent = cartTransform;
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.identity;
-        }
+        cartTransform = cart.GetSpawnPosition();
+
+        transform.parent = cartTransform;
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+
     }
 
     //public void OnSelectGrabbable(SelectEnterEventArgs eventArgs)

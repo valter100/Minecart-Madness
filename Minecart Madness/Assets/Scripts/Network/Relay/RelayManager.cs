@@ -45,6 +45,8 @@ public class RelayManager : MonoBehaviour
 
         relayHostData.joinCode = await Relay.Instance.GetJoinCodeAsync(relayHostData.AllocationID);
 
+        Debug.Log("Join code: " + relayHostData.joinCode);
+
         Transport.SetRelayServerData(
             relayHostData.IPv4Adress, 
             relayHostData.Port, 
