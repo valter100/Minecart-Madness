@@ -16,10 +16,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (IsOwner)
-            cameraObject.SetActive(true);
-
-        base.OnNetworkSpawn();
+        DisableClientInput();
     }
 
     public void DisableClientInput()

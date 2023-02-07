@@ -12,6 +12,7 @@ public class TestRelay : MonoBehaviour
 {
     [SerializeField] TMP_InputField inputField;
     [SerializeField] TMP_Text playerText;
+    [SerializeField] TouchScreenKeyboard keyboard;
     public async void CreateRelay()
     {
         try
@@ -59,5 +60,10 @@ public class TestRelay : MonoBehaviour
             playerText.text = ex.Message;
             Debug.Log(ex);
         }
+    }
+
+    public void ShowKeyboard()
+    {
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 }
