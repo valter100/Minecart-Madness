@@ -13,11 +13,11 @@ using UnityEngine;
 public class RelayManager : MonoBehaviour
 {
     [SerializeField] static string enviroment = "production";
+    [SerializeField] static string relayJoinCode;
 
     static int maxConnections = 4;
 
     public static bool IsRelayEnabled => Transport != null && Transport.Protocol == UnityTransport.ProtocolType.RelayUnityTransport;
-
     public static UnityTransport Transport => NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
 
     public static async Task<RelayHostData> SetupRelay()
@@ -44,6 +44,7 @@ public class RelayManager : MonoBehaviour
         };
 
         relayHostData.joinCode = await Relay.Instance.GetJoinCodeAsync(relayHostData.AllocationID);
+        relayJoinCode = relayHostData.joinCode;
 
         Debug.Log("Join code: " + relayHostData.joinCode);
 
@@ -93,5 +94,10 @@ public class RelayManager : MonoBehaviour
             );
 
         return relayJoinData;
+    }
+
+    public string GetJoinCode()
+    {
+        return relayJoinCode;
     }
 }

@@ -13,13 +13,17 @@ public class TestRelay : MonoBehaviour
     [SerializeField] TMP_InputField inputField;
     [SerializeField] TMP_Text playerText;
     [SerializeField] TouchScreenKeyboard keyboard;
+    [SerializeField] string joinCode;
+
+    public string JoinCode() => joinCode;
+
     public async void CreateRelay()
     {
         try
         {
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
 
-            string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+            joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
             Debug.Log("Join code: " + joinCode);
 
             RelayServerData relayServerData = new RelayServerData(allocation, "dtls");

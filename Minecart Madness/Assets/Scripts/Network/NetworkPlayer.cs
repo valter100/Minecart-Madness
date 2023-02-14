@@ -5,6 +5,7 @@ using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem.XR;
 using Unity.XR.CoreUtils;
+using TMPro;
 
 public class NetworkPlayer : NetworkBehaviour
 {
@@ -13,6 +14,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private ActionBasedController leftController;
     [SerializeField] private ActionBasedController rightController;
     [SerializeField] GameObject cameraObject;
+    [SerializeField] GameObject canvasObject;
 
     public override void OnNetworkSpawn()
     {
@@ -28,12 +30,14 @@ public class NetworkPlayer : NetworkBehaviour
             var clientTurnProvider = GetComponent<ActionBasedSnapTurnProvider>();
             var clientHead = GetComponentInChildren<TrackedPoseDriver>();
             var clientCamera = GetComponentInChildren<Camera>();
+            var clientAudioListener = GetComponentInChildren<AudioListener>();
 
             clientCamera.enabled = false;
             clientMoveProvider.EnableInputActions(false);
             clientTurnProvider.enableTurnLeftRight = false;
             clientTurnProvider.enableTurnAround = false;
             clientHead.enabled = false;
+            clientAudioListener.enabled = false;
 
             foreach (var controller in clientControllers)
             {
@@ -49,10 +53,12 @@ public class NetworkPlayer : NetworkBehaviour
 
         cartTransform = cart.GetSpawnPosition();
 
-        transform.parent = cartTransform;
+        transform.SetParent(cartTransform, false);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
+        TMP_Text joinCodeText = canvasObject.transform.Find("JoinCodeText").GetComponent<TMP_Text>();
+        joinCodeText.text = "Join Code: " + FindObjectOfType<TestRelay>().JoinCode();
     }
 
     //public void OnSelectGrabbable(SelectEnterEventArgs eventArgs)

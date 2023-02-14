@@ -445,7 +445,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1470166119}
+      - m_Target: {fileID: 2098394917}
         m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
         m_MethodName: CreateRelay
         m_Mode: 1
@@ -3570,7 +3570,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1470166118}
   - component: {fileID: 1470166117}
-  - component: {fileID: 1470166119}
   m_Layer: 0
   m_Name: Lobby
   m_TagString: Untagged
@@ -3609,20 +3608,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1470166119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470166116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6ae575db1ceeb34babd920df1c546df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 1840582926}
-  playerText: {fileID: 845406799}
 --- !u!4 &1494826524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2136644248046520459, guid: e47e0b73166ed481cbfba029b2fde71a,
@@ -4089,7 +4074,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1470166119}
+      - m_Target: {fileID: 2098394917}
         m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
         m_MethodName: JoinRelay
         m_Mode: 1
@@ -4393,7 +4378,7 @@ MonoBehaviour:
   m_OnSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1470166119}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
         m_MethodName: ShowKeyboard
         m_Mode: 1
@@ -4639,18 +4624,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 229748693}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2098394912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098394908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0f09c06808e05488a52f657020782b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2098394913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4664,6 +4637,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSceneName: 
+--- !u!114 &2098394917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098394908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ae575db1ceeb34babd920df1c546df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1840582926}
+  playerText: {fileID: 845406799}
+  joinCode: 
 --- !u!4 &2102697799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6392730909723163955, guid: 840508127c66444f387ae49b289d6a83,
