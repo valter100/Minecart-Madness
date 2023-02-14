@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 288383110275145326}
   - component: {fileID: 213458293089097808}
   - component: {fileID: -1136052912027609924}
+  - component: {fileID: 4269044241931449672}
   m_Layer: 0
   m_Name: Left Hand
   m_TagString: Untagged
@@ -261,9 +262,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cd2e780cf62451fb46449f7f19f4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handType: 0
   thumbMoveTime: 0.1
   animator: {fileID: 213458293089097808}
+  handController: {fileID: 4269044241931449672}
+--- !u!114 &4269044241931449672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931214801648790374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aadf6cb407eb946afb0315de4dd0206e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 0
+  handAnimator: {fileID: -1136052912027609924}
 --- !u!1 &6323006619154555716
 GameObject:
   m_ObjectHideFlags: 0
