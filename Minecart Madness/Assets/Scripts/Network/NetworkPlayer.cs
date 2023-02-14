@@ -14,7 +14,8 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private ActionBasedController leftController;
     [SerializeField] private ActionBasedController rightController;
     [SerializeField] GameObject cameraObject;
-    [SerializeField] GameObject canvasObject;
+    
+    GameObject canvasObject;
 
     public override void OnNetworkSpawn()
     {
@@ -57,6 +58,7 @@ public class NetworkPlayer : NetworkBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
+        canvasObject = GameObject.Find("Cart").transform.Find("UI").gameObject;
         TMP_Text joinCodeText = canvasObject.transform.Find("JoinCodeText").GetComponent<TMP_Text>();
         joinCodeText.text = "Join Code: " + FindObjectOfType<TestRelay>().JoinCode();
     }
