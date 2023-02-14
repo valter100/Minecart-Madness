@@ -691,7 +691,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
-  m_StartingSelectedInteractable: {fileID: 0}
+  m_StartingSelectedInteractable: {fileID: 3689769057176745237, guid: e47e0b73166ed481cbfba029b2fde71a,
+    type: 3}
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls: []
