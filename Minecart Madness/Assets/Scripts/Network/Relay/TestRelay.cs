@@ -68,6 +68,7 @@ public class TestRelay : MonoBehaviour
 
     public void ShowKeyboard()
     {
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+        keyboard = TouchScreenKeyboard.Open("");
+        keyboard.active = true;
     }
 }

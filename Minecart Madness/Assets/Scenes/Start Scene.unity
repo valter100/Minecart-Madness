@@ -1233,23 +1233,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7993616387567060480, guid: 5088e1cb0b1c7634d83a6c5987e4dd01,
-        type: 3}
-      propertyPath: m_ProtocolType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7993616387567060481, guid: 5088e1cb0b1c7634d83a6c5987e4dd01,
-        type: 3}
-      propertyPath: NetworkConfig.PlayerPrefab
+    - target: {fileID: 2098394917, guid: 5088e1cb0b1c7634d83a6c5987e4dd01, type: 3}
+      propertyPath: inputField
       value: 
-      objectReference: {fileID: 4176172382449855536, guid: 44c2854cb1f53486b962f1d3020e4fb4,
-        type: 3}
-    - target: {fileID: 7993616387567060481, guid: 5088e1cb0b1c7634d83a6c5987e4dd01,
-        type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[0].Prefab
+      objectReference: {fileID: 1840582926}
+    - target: {fileID: 2098394917, guid: 5088e1cb0b1c7634d83a6c5987e4dd01, type: 3}
+      propertyPath: playerText
       value: 
-      objectReference: {fileID: 4176172382449855536, guid: 44c2854cb1f53486b962f1d3020e4fb4,
-        type: 3}
+      objectReference: {fileID: 845406799}
     - target: {fileID: 7993616387567060483, guid: 5088e1cb0b1c7634d83a6c5987e4dd01,
         type: 3}
       propertyPath: m_Name
@@ -1511,6 +1502,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: 2100526081310831770, guid: e47e0b73166ed481cbfba029b2fde71a,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 634742474
+      objectReference: {fileID: 0}
     - target: {fileID: 2136644248046520459, guid: e47e0b73166ed481cbfba029b2fde71a,
         type: 3}
       propertyPath: m_RootOrder
@@ -2413,6 +2409,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3434366872
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -2535,6 +2536,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 133798253
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -2604,6 +2610,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3770495448
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -3195,6 +3206,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2760568656
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -3405,6 +3421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 415164109
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -3854,6 +3875,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 680754609
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -3935,6 +3961,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3344793454
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -4249,6 +4280,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: -6115813591892038618, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2415634821
+      objectReference: {fileID: 0}
     - target: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
         type: 3}
       propertyPath: m_Name
@@ -4343,7 +4379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -4398,7 +4434,7 @@ MonoBehaviour:
   m_OnSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2098394917}
         m_TargetAssemblyTypeName: TestRelay, Assembly-CSharp
         m_MethodName: ShowKeyboard
         m_Mode: 1
@@ -4512,6 +4548,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2054435579}
     m_Modifications:
+    - target: {fileID: 2100526081310831770, guid: e47e0b73166ed481cbfba029b2fde71a,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3011475042
+      objectReference: {fileID: 0}
     - target: {fileID: 2136644248046520459, guid: e47e0b73166ed481cbfba029b2fde71a,
         type: 3}
       propertyPath: m_RootOrder
@@ -4638,40 +4679,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 682113110}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2098394908 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7993616387567060483, guid: 5088e1cb0b1c7634d83a6c5987e4dd01,
+--- !u!114 &2098394913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2098394913, guid: 5088e1cb0b1c7634d83a6c5987e4dd01,
     type: 3}
   m_PrefabInstance: {fileID: 229748693}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2098394913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098394908}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e091af0d4782e6d4a880001122cd94c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSceneName: 
---- !u!114 &2098394917
+--- !u!114 &2098394917 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2098394917, guid: 5088e1cb0b1c7634d83a6c5987e4dd01,
+    type: 3}
+  m_PrefabInstance: {fileID: 229748693}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098394908}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6ae575db1ceeb34babd920df1c546df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 1840582926}
-  playerText: {fileID: 845406799}
-  joinCode: 
 --- !u!4 &2102697799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6392730909723163955, guid: 840508127c66444f387ae49b289d6a83,

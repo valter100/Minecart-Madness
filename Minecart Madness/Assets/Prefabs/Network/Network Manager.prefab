@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7993616387567060486}
   - component: {fileID: 7993616387567060481}
   - component: {fileID: 7993616387567060480}
+  - component: {fileID: 2098394913}
+  - component: {fileID: 2098394917}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -50,11 +52,35 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 7993616387567060480}
-    PlayerPrefab: {fileID: 7751819173756736031, guid: c208c9330a95fb94a9ceb3ed6a31d0c7,
+    PlayerPrefab: {fileID: 4176172382449855536, guid: 44c2854cb1f53486b962f1d3020e4fb4,
       type: 3}
     NetworkPrefabs:
     - Override: 0
-      Prefab: {fileID: 7751819173756736031, guid: c208c9330a95fb94a9ceb3ed6a31d0c7,
+      Prefab: {fileID: 4176172382449855536, guid: 44c2854cb1f53486b962f1d3020e4fb4,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7378954694421133050, guid: e47e0b73166ed481cbfba029b2fde71a,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 964385070338332103, guid: f469cd3c18be149a88e667b2ffffbe10,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 964385070338332103, guid: 840508127c66444f387ae49b289d6a83,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 964385070338332103, guid: 032ee215b96424685818896415846abf,
         type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
@@ -86,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProtocolType: 0
+  m_ProtocolType: 1
   m_MaxPacketQueueSize: 128
   m_MaxPayloadSize: 6144
   m_HeartbeatTimeoutMS: 500
@@ -101,3 +127,31 @@ MonoBehaviour:
     PacketDelayMS: 0
     PacketJitterMS: 0
     PacketDropRate: 0
+--- !u!114 &2098394913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993616387567060483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e091af0d4782e6d4a880001122cd94c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSceneName: 
+--- !u!114 &2098394917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993616387567060483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ae575db1ceeb34babd920df1c546df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 0}
+  playerText: {fileID: 0}
+  joinCode: 
