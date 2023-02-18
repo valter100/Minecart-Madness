@@ -25,14 +25,14 @@ public class Rail : MonoBehaviour
         #if UNITY_EDITOR
         if (PrefabUtility.IsAnyPrefabInstanceRoot(gameObject))
         {
-            PrefabUtility.UnpackPrefabInstance(gameObject, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
-            Debug.Log("Rail prefab unpacked completely");
+            PrefabUtility.UnpackPrefabInstance(gameObject, PrefabUnpackMode.OutermostRoot, InteractionMode.AutomatedAction);
+            Debug.Log("Rail prefab unpacked");
         }
         #endif
     }
 
-    [ContextMenu("Update Supports")]
-    private void UpdateSupports()
+    [ContextMenu("Update Supports And Cart")]
+    private void UpdateSupportsAndCart()
     {
         if (supportsCurve)
         {
@@ -62,6 +62,7 @@ public class Rail : MonoBehaviour
         UnityEditor.Selection.objects = new Object[] { supportsCurve.gameObject };
         #endif
 
+        transform.Find("Cart").GetComponent<Cart>().MoveToStartPosition();
     }
 
 }

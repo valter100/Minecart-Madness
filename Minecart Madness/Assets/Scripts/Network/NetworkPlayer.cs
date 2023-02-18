@@ -50,15 +50,10 @@ public class NetworkPlayer : NetworkBehaviour
 
     private void Start()
     {
-        Cart cart  = GameObject.FindGameObjectWithTag("Cart").GetComponent<Cart>();
+        Cart cart = GameObject.Find("Rail").transform.Find("Cart").GetComponent<Cart>();
+        cart.AddPlayer(this);
 
-        cartTransform = cart.GetSpawnPosition();
-
-        transform.SetParent(cartTransform, false);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
-
-        canvasObject = GameObject.Find("Cart").transform.Find("UI").gameObject;
+        canvasObject = cart.transform.Find("UI").gameObject;
         TMP_Text joinCodeText = canvasObject.transform.Find("JoinCodeText").GetComponent<TMP_Text>();
         joinCodeText.text = "Join Code: " + FindObjectOfType<TestRelay>().JoinCode();
     }

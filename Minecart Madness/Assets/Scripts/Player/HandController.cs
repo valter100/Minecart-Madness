@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public enum HandType
-{
-    Left,
-    Right
-}
+public enum HandType { Left, Right }
 
 public class HandController : MonoBehaviour
 {
@@ -28,27 +24,18 @@ public class HandController : MonoBehaviour
 
     private void Start()
     {
-        inputDevice = GetInputDevice();
-    }
-
-    private InputDevice GetInputDevice()
-    {
-        InputDeviceCharacteristics controllerCharacteristic = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Controller;
-
-        controllerCharacteristic = controllerCharacteristic | (handType == HandType.Left ? InputDeviceCharacteristics.Left : InputDeviceCharacteristics.Right);
+        InputDeviceCharacteristics controllerCharacteristic =
+            InputDeviceCharacteristics.HeldInHand |
+            InputDeviceCharacteristics.Controller |
+            (handType == HandType.Left ? InputDeviceCharacteristics.Left : InputDeviceCharacteristics.Right);
 
         List<InputDevice> inputDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristic, inputDevices);
 
-        return inputDevices[0];
+        inputDevice = inputDevices[0];
     }
 
     private void Update()
-    {
-        GetInputValues();
-    }
-
-    private void GetInputValues()
     {
         inputDevice.TryGetFeatureValue(CommonUsages.trigger, out triggerValue);
         inputDevice.TryGetFeatureValue(CommonUsages.grip, out gripValue);
