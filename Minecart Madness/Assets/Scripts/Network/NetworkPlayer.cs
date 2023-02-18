@@ -28,6 +28,8 @@ public class NetworkPlayer : NetworkBehaviour
         {
             var clientMoveProvider = GetComponent<NetworkMoveProvider>();
             var clientControllers = GetComponentsInChildren<ActionBasedController>();
+            var clientHandAnimators = GetComponentsInChildren<HandAnimator>();
+            var clientHandControllers = GetComponentsInChildren<HandController>();
             var clientTurnProvider = GetComponent<ActionBasedSnapTurnProvider>();
             var clientHead = GetComponentInChildren<TrackedPoseDriver>();
             var clientCamera = GetComponentInChildren<Camera>();
@@ -44,6 +46,16 @@ public class NetworkPlayer : NetworkBehaviour
             {
                 controller.enableInputActions = false;
                 controller.enableInputTracking = false;
+            }
+
+            foreach(var hand in clientHandControllers)
+            {
+                hand.enabled = false;
+            }
+
+            foreach(var hand in clientHandAnimators)
+            {
+                hand.enabled = false;
             }
         }
     }
