@@ -32,7 +32,14 @@ public class HandController : MonoBehaviour
         List<InputDevice> inputDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristic, inputDevices);
 
-        inputDevice = inputDevices[0];
+        try
+        {
+            inputDevice = inputDevices[0];
+        }
+        catch
+        {
+            Debug.LogWarning(handType + " controller not found.");
+        }
     }
 
     private void Update()
