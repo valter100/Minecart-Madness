@@ -65,7 +65,7 @@ public class NetworkPlayer : NetworkBehaviour
         Cart cart = GameObject.Find("Rail").transform.Find("Cart").GetComponent<Cart>();
         cart.AddPlayer(this);
 
-        canvasObject = cart.transform.Find("UI").gameObject;
+        canvasObject = GameObject.Find("Join Sign").transform.Find("UI").gameObject;
         TMP_Text joinCodeText = canvasObject.transform.Find("JoinCodeText").GetComponent<TMP_Text>();
         joinCodeText.text = "Join Code: " + FindObjectOfType<TestRelay>().JoinCode();
     }
