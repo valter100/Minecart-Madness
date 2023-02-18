@@ -12,7 +12,7 @@ public class Cart : NetworkBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float startPosition;
 
-    [SerializeField] private NetworkVariable<List<Transform>> playerTransforms;
+    [SerializeField] private List<Transform> playerTransforms;
 
     public override void OnNetworkSpawn()
     {
@@ -21,19 +21,19 @@ public class Cart : NetworkBehaviour
 
     public void AddPlayer(NetworkPlayer networkPlayer)
     {
-        playerTransforms.Value.Add(networkPlayer.transform);
+        playerTransforms.Add(networkPlayer.transform);
         UpdateSpawnPoints();
     }
 
     public void RemovePlayer(NetworkPlayer networkPlayer)
     {
-        playerTransforms.Value.Remove(networkPlayer.transform);
+        playerTransforms.Remove(networkPlayer.transform);
         UpdateSpawnPoints();
     }
 
     private void UpdateSpawnPoints()
     {
-        currentSpawnPoints = new Transform[playerTransforms.Value.Count];
+        currentSpawnPoints = new Transform[playerTransforms.Count];
 
         int i = 0;
         foreach (Transform spawnPoint in spawnPointLayouts[currentSpawnPoints.Length - 1])
@@ -52,9 +52,9 @@ public class Cart : NetworkBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < playerTransforms.Value.Count; ++i)
+        for (int i = 0; i < playerTransforms.Count; ++i)
         {
-            playerTransforms.Value[i].position = currentSpawnPoints[i].position;
+            playerTransforms[i].position = currentSpawnPoints[i].position;
         }
     }
 
