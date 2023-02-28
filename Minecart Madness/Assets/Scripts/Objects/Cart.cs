@@ -7,37 +7,44 @@ using UnityEngine;
 public class Cart : NetworkBehaviour
 {
     [SerializeField] private CurveFollower curveFollower;
-    [SerializeField] private Transform[] spawnPointLayouts;
-    [SerializeField] private Transform[] currentSpawnPoints;
     [SerializeField] private float speed;
     [SerializeField] private float startPosition;
 
-    [SerializeField] private List<Transform> playerTransforms;
+    [SerializeField] private NetworkVariable<int> playerAmount;
+    [SerializeField] private NetworkVariable<int> positionValue;
+
+    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private Transform[] spawnPointLayouts;
+
+    public Transform GetTransform()
+    {
+        int numberOfSpawnpoints = spawnPointLayouts[playerAmount.Value].childCount;
+        Debug.Log("There are: " + numberOfSpawnpoints + " spawnpoints in the cart");
+
+        spawnPoints[playerAmount.Value].position = spawnPointLayouts[playerAmount.Value].GetChild(positionValue.Value).position;
+        IncreasePlayerAmountServerRpc();
+        return spawnPoints[playerAmount.Value];
+    }
+
+    [ServerRpc]
+    public void IncreasePlayerAmountServerRpc()
+    {
+        playerAmount.Value++;
+    }
+
+    [ServerRpc]
+    public void ResetSpawnPositionsServerRpc()
+    {
+        if (!IsOwner)
+            return;
+
+        playerAmount.Value = 0;
+        positionValue.Value = 0;
+    }
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-    }
-
-    public void AddPlayer(NetworkPlayer networkPlayer)
-    {
-        playerTransforms.Add(networkPlayer.transform);
-        UpdateSpawnPoints();
-    }
-
-    public void RemovePlayer(NetworkPlayer networkPlayer)
-    {
-        playerTransforms.Remove(networkPlayer.transform);
-        UpdateSpawnPoints();
-    }
-
-    private void UpdateSpawnPoints()
-    {
-        currentSpawnPoints = new Transform[playerTransforms.Count];
-
-        int i = 0;
-        foreach (Transform spawnPoint in spawnPointLayouts[currentSpawnPoints.Length - 1])
-            currentSpawnPoints[i++] = spawnPoint;
     }
 
     public void MoveToStartPosition()
@@ -48,22 +55,5 @@ public class Cart : NetworkBehaviour
     public void StartMoving()
     {
         curveFollower.speed = speed;
-    }
-
-    private void Update()
-    {
-        for (int i = 0; i < playerTransforms.Count; ++i)
-        {
-            playerTransforms[i].position = currentSpawnPoints[i].position;
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.white;
-
-        foreach (Transform spawnPointLayout in spawnPointLayouts)
-            foreach (Transform spawnPosition in spawnPointLayout)
-                Gizmos.DrawSphere(spawnPosition.position, 0.05f);
     }
 }

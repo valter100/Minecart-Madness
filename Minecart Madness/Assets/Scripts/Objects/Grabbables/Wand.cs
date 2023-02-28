@@ -1,15 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Wand : MonoBehaviour
+public class Wand : NetworkBehaviour
 {
-    [SerializeField] private Spell spellPrefab;
+    [SerializeField] private GameObject spellPrefab;
     [SerializeField] private Transform firePoint;
 
-    public void CastSpell()
+    [ServerRpc]
+    public void CastSpellServerRpc()
     {
-        Instantiate(spellPrefab, firePoint.position, transform.rotation, transform);
+        //GameObject go = Instantiate(spellPrefab, firePoint.position, transform.rotation);
+        //go.GetComponent<NetworkObject>().Spawn(true);
+
+        //Debug.Log("Spawned Spell on server!");
+        CastSpellClientRpc();
+    }
+
+    [ClientRpc]
+    public void CastSpellClientRpc()
+    {
+        GameObject go = Instantiate(spellPrefab, firePoint.position, transform.rotation);
+        //go.GetComponent<NetworkObject>().Spawn(true);
+
+        Debug.Log("Spawned Spell on clients!");
     }
 
 }

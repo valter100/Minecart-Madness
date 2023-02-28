@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ec7776bc3a24be6a711e891262ef92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellPrefab: {fileID: 80219203556365136, guid: 3d2a435ec8cc044fc9a86b481ad1f0ae,
+  spellPrefab: {fileID: 2931911466774138955, guid: 3d2a435ec8cc044fc9a86b481ad1f0ae,
     type: 3}
   firePoint: {fileID: 4398262985003618505}
 --- !u!54 &5874481076478704789
@@ -273,7 +273,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6904071588225699451}
         m_TargetAssemblyTypeName: Wand, Assembly-CSharp
-        m_MethodName: CastSpell
+        m_MethodName: CastSpellServerRpc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -14,13 +14,39 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private ActionBasedController leftController;
     [SerializeField] private ActionBasedController rightController;
     [SerializeField] GameObject cameraObject;
-    
+    Cart cart;
     GameObject canvasObject;
 
     public override void OnNetworkSpawn()
     {
         DisableClientInput();
+
+        cart = GameObject.Find("Rail").transform.Find("Cart").GetComponent<Cart>();
+
+        SetCartTransform();
+        canvasObject = GameObject.Find("Join Sign").transform.Find("UI").gameObject;
+        TMP_Text joinCodeText = canvasObject.transform.Find("JoinCodeText").GetComponent<TMP_Text>();
+        joinCodeText.text = "Join Code: " + FindObjectOfType<TestRelay>().JoinCode();
     }
+
+    public override void OnNetworkDespawn()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        cart.ResetSpawnPositionsServerRpc();
+
+        foreach(GameObject player in players)
+        {
+            if (player == gameObject)
+                continue;
+
+            NetworkPlayer networkPlayer = player.GetComponent<NetworkPlayer>();
+
+            networkPlayer.SetCartTransform();
+        }
+    }
+
+
 
     public void DisableClientInput()
     {
@@ -59,22 +85,14 @@ public class NetworkPlayer : NetworkBehaviour
             }
         }
     }
-
-    private void Start()
+    
+    public void SetCartTransform()
     {
-        Cart cart = GameObject.Find("Rail").transform.Find("Cart").GetComponent<Cart>();
-        cart.AddPlayer(this);
-
-        canvasObject = GameObject.Find("Join Sign").transform.Find("UI").gameObject;
-        TMP_Text joinCodeText = canvasObject.transform.Find("JoinCodeText").GetComponent<TMP_Text>();
-        joinCodeText.text = "Join Code: " + FindObjectOfType<TestRelay>().JoinCode();
+        cartTransform = cart.GetTransform();
     }
 
-    //public void OnSelectGrabbable(SelectEnterEventArgs eventArgs)
-    //{
-    //    if(IsClient && IsOwner)
-    //    {
-
-    //    }
-    //}
+    private void Update()
+    {
+        transform.position = cartTransform.position;
+    }
 }
