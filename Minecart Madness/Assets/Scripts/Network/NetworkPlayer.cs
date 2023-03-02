@@ -11,8 +11,6 @@ public class NetworkPlayer : NetworkBehaviour
 {
     [SerializeField] Transform cartTransform;
     [SerializeField] private XROrigin origin;
-    [SerializeField] private ActionBasedController leftController;
-    [SerializeField] private ActionBasedController rightController;
     [SerializeField] GameObject cameraObject;
     Cart cart;
     GameObject canvasObject;

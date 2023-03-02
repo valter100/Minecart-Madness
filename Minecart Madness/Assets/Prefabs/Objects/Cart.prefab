@@ -1323,9 +1323,9 @@ MonoBehaviour:
   speed: 0.5
   startPosition: 1
   playerAmount:
-    m_InternalValue: 3
+    m_InternalValue: 0
   positionValue:
-    m_InternalValue: 1
+    m_InternalValue: 0
   spawnPoints:
   - {fileID: 487268286286393455}
   - {fileID: 5368168843051563459}

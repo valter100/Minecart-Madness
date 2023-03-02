@@ -28,6 +28,8 @@ public class Projectile : MonoBehaviour
     private bool collided;
     private float radius;
 
+    public float Radius => radius;
+
     private void Awake()
     {
         radius = GetComponent<SphereCollider>().radius;

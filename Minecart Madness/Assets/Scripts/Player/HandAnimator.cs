@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-// Script from: https://github.com/Novaborn-dev/VR-Hands-with-Unity-XR
-
 public class HandAnimator : MonoBehaviour
 {
     [SerializeField] private float thumbMoveTime;
     [SerializeField] private Animator animator;
-    [SerializeField] private HandController handController;
 
+    private HandController handController;
     private float thumbValue;
+
+    private void Start()
+    {
+        handController = GetComponentInParent<HandController>();
+        handController.LinkHand(this);
+
+        if (handController.HandMode == HandMode.Dynamic)
+            animator.SetTrigger("Dynamic");
+        else
+            animator.SetTrigger("Closed");
+    }
 
     private void Update()
     {
-        AnimateHand();
+        if (handController.HandMode == HandMode.Dynamic)
+            AnimateDynamicHand();
+        else
+            AnimateStaticHand();
     }
 
-    private void AnimateHand()
+    private void AnimateDynamicHand()
     {
         if (handController.PrimaryTouched || handController.SecondaryTouched)
             thumbValue += 1f / thumbMoveTime * Time.deltaTime;
@@ -31,4 +43,19 @@ public class HandAnimator : MonoBehaviour
         animator.SetFloat("Grip", handController.GripValue);
         animator.SetFloat("Thumb", thumbValue);
     }
+
+    private void AnimateStaticHand()
+    {
+        if (handController.HandState == handController.OldHandState)
+            return;
+
+        switch (handController.HandState)
+        {
+            case HandState.Closed:   animator.SetTrigger("Closed"); break;
+            case HandState.Hovering: animator.SetTrigger("Normal"); break;
+            case HandState.Aiming:   animator.SetTrigger("Normal"); break;
+            case HandState.Casting:  animator.SetTrigger("Open");   break;
+        }
+    }
+
 }
