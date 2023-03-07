@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 80219203556365136}
   - component: {fileID: 7099031684799981421}
   - component: {fileID: 1456383046105720279}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plasma Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

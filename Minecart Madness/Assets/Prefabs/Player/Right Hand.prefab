@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 4161873966713487638}
   - component: {fileID: 2756062475233999011}
   - component: {fileID: 4178786785575436712}
-  - component: {fileID: 2321148874481109535}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -117,19 +116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2321148874481109535
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1695906369657817469}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2046546341409461316
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +349,6 @@ GameObject:
   - component: {fileID: 5106554923818038291}
   - component: {fileID: 3322493258978647519}
   - component: {fileID: 3558282083885819424}
-  - component: {fileID: 1458514608052698035}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -436,19 +421,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1458514608052698035
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4596681122124900400}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5151895939291384239
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +509,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 6480673122792485438}
   fireRate: 1
+  crosshairController: {fileID: 5595056712914735152}
 --- !u!114 &5595056712914735152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,9 +522,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a571f20ec99f54884aa23557e7a48f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairCanvasPrefab: {fileID: 2507164799679399392, guid: ad38dbee157294551bd1fa60ef882c40,
+  crosshairPrefab: {fileID: 6166333247391194570, guid: aad8b315951954b428094861ceb45b96,
     type: 3}
   firePoint: {fileID: 6480673122792485438}
+  cameraTransform: {fileID: 0}
+  smooth: 1
+  raycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 217
 --- !u!1 &5617651716797405623
 GameObject:
   m_ObjectHideFlags: 0

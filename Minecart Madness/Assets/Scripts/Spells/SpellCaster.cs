@@ -9,6 +9,7 @@ public class SpellCaster : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [Range(0f, 20f)]
     [SerializeField] private float fireRate;
+    [SerializeField] private CrosshairController crosshairController;
 
     private float cooldown;
 
@@ -50,7 +51,15 @@ public class SpellCaster : MonoBehaviour
     [ClientRpc]
     public void CastSpellClientRpc()
     {
-        GameObject go = Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
+        if (crosshairController && crosshairController.CrosshairVisible)
+        {
+            Instantiate(spellPrefab, firePoint.position, Quaternion.LookRotation(crosshairController.CrosshairPosition - firePoint.position));
+        }
+        else
+        {
+            Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
+        }
+            
         //go.GetComponent<NetworkObject>().Spawn(true);
 
         Debug.Log("Spawned Spell on clients!");
