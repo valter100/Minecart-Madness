@@ -56,6 +56,7 @@ public class HandAnimator : NetworkBehaviour
         switch (handController.HandState)
         {
             case HandState.Closed:   animator.SetTrigger("Closed"); break;
+            case HandState.Grabbing: animator.SetTrigger("Closed"); break;
             case HandState.Hovering: animator.SetTrigger("Normal"); break;
             case HandState.Aiming:   animator.SetTrigger("Normal"); break;
             case HandState.Casting:  animator.SetTrigger("Open");   break;

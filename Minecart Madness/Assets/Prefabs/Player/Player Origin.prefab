@@ -863,6 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handMode: 1
   handType: 1
+  rayInteractor: {fileID: 1339527025409528019}
 --- !u!1 &4176172381813634193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handMode: 1
   handType: 0
+  rayInteractor: {fileID: 191536235163754585}
 --- !u!1 &7375679895511053935
 GameObject:
   m_ObjectHideFlags: 0
