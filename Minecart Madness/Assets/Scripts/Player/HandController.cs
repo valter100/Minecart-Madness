@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -7,7 +8,7 @@ public enum HandType { Left, Right }
 public enum HandState { Closed, Hovering, Aiming, Casting }
 public enum HandMode { Dynamic, Static }
 
-public class HandController : MonoBehaviour
+public class HandController : NetworkBehaviour
 {
     [SerializeField] private HandMode handMode;
     [SerializeField] private HandType handType;

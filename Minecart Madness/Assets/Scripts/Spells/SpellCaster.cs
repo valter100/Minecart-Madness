@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class SpellCaster : MonoBehaviour
+public class SpellCaster : NetworkBehaviour
 {
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private Transform firePoint;
@@ -23,7 +23,7 @@ public class SpellCaster : MonoBehaviour
         if (cooldown == 0f)
         {
             cooldown = 1f / fireRate;
-            CastSpellServerRpc();
+            CastSpell();
         }
     }
 
@@ -38,30 +38,40 @@ public class SpellCaster : MonoBehaviour
         }
     }
 
-    [ServerRpc]
-    public void CastSpellServerRpc()
+    public void CastSpell()
     {
-        //GameObject go = Instantiate(spellPrefab, firePoint.position, transform.rotation);
-        //go.GetComponent<NetworkObject>().Spawn(true);
+        GameObject go = null;
 
-        //Debug.Log("Spawned Spell on server!");
-        CastSpellClientRpc();
+        if (crosshairController && crosshairController.CrosshairVisible)
+        {
+            go = Instantiate(spellPrefab, firePoint.position, Quaternion.LookRotation(crosshairController.CrosshairPosition - firePoint.position));
+        }
+        else
+        {
+            go = Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
+        }
+
+        go.GetComponent<NetworkObject>().Spawn(true);
+        //CastSpellClientRpc();
     }
 
     [ClientRpc]
     public void CastSpellClientRpc()
     {
-        if (crosshairController && crosshairController.CrosshairVisible)
-        {
-            Instantiate(spellPrefab, firePoint.position, Quaternion.LookRotation(crosshairController.CrosshairPosition - firePoint.position));
-        }
-        else
-        {
-            Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
-        }
+        //if (crosshairController && crosshairController.CrosshairVisible)
+        //{
+        //    Instantiate(spellPrefab, firePoint.position, Quaternion.LookRotation(crosshairController.CrosshairPosition - firePoint.position));
+        //}
+        //else
+        //{
+        //    Instantiate(spellPrefab, firePoint.position, firePoint.rotation);
+        //}
             
         //go.GetComponent<NetworkObject>().Spawn(true);
 
         Debug.Log("Spawned Spell on clients!");
+
+        GameObject go = Instantiate(spellPrefab, firePoint.position, transform.rotation);
+        Debug.Log("Casting Spell!");
     }
 }

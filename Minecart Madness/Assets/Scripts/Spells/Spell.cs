@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public abstract class Spell : MonoBehaviour
+public abstract class Spell : NetworkBehaviour
 {
     [SerializeField] private string displayName;
     [TextArea()]
@@ -10,12 +11,13 @@ public abstract class Spell : MonoBehaviour
 
     [SerializeField] protected GameObject[] projectilePrefabs;
     
-    private void Start()
+    void Start()
     {
         Cast();
     }
 
-    protected abstract void Cast();
+
+    public abstract void Cast();
 
     /// <summary>
     /// Call when spell has finished casting to destroy it

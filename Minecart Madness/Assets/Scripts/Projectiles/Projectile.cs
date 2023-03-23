@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Projectile : MonoBehaviour
+public class Projectile : NetworkBehaviour
 {
     [Header("Values")]
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float speed;
     [Range(0f, 1f)]
     [SerializeField] private float accuracy;
+    [SerializeField] float lifeTime;
+    float timeLived;
 
     [Header("Collision")]
     [SerializeField] private bool sphereCast;
@@ -64,15 +67,13 @@ public class Projectile : MonoBehaviour
             muzzleVFX.transform.parent = null;
             Destroy(muzzleVFX, muzzleVFX.transform.GetChild(0).GetComponent<ParticleSystem>().main.duration);
         }
-
-        // Destroy projectile if not collided within 10 seconds
-        Destroy(gameObject, 10f);
     }
 
     private void Update()
     {
         Vector3 originalMove = transform.forward * speed * Time.deltaTime;
-       
+        timeLived += Time.deltaTime;
+
         if (sphereCast && originalMove.magnitude >= radius * 2f)
         {
             RaycastHit raycastHit;
@@ -92,6 +93,17 @@ public class Projectile : MonoBehaviour
         {
             transform.position += originalMove;
         }
+
+        if(timeLived >= lifeTime && IsOwner)
+        {
+            destroyProjectileServerRPC();
+        }
+    }
+
+    [ServerRpc]
+    void destroyProjectileServerRPC()
+    {
+        GetComponent<NetworkObject>().Despawn(true);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -104,8 +116,8 @@ public class Projectile : MonoBehaviour
         // Deal damage
         if (damage != 0)
         {
-            if (collision.gameObject.tag == "Enemy")
-                collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            if (collision.gameObject.tag == "Enemy" && IsOwner)
+                collision.gameObject.GetComponent<Enemy>().TakeDamageServerRPC(damage);
 
             //else if (collision.gameObject.tag == "Cart")
                 //collision.gameObject.GetComponent<Cart>().TakeDamage(damage);

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Explosion : MonoBehaviour
+public class Explosion : NetworkBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float radius;
     [SerializeField] private float force;
     [SerializeField] private LayerMask layerMask;
@@ -43,7 +44,8 @@ public class Explosion : MonoBehaviour
             // Damage enemy
             if (collider.gameObject.tag == "Enemy")
             {
-                collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                //if(IsOwner)
+                collider.gameObject.GetComponent<Enemy>().TakeDamageServerRPC(damage);
             }
 
             // Trigger pineapple crate

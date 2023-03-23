@@ -56,6 +56,7 @@ MonoBehaviour:
   damage: 12
   speed: 50
   accuracy: 0.99
+  lifeTime: 2
   sphereCast: 1
   spherecastCollisionMask:
     serializedVersion: 2

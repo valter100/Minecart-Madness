@@ -57,7 +57,7 @@ public class TestRelay : MonoBehaviour
 
             NetworkManager.Singleton.StartClient();
 
-            SceneTransitionHandler.LoadScene("Level 1");
+            SceneTransitionHandler.LoadSceneByName("Level 1");
         }
         catch (RelayServiceException ex)
         {

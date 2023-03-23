@@ -15,8 +15,12 @@ public class NetworkPlayer : NetworkBehaviour
     Cart cart;
     GameObject canvasObject;
 
+    bool online;
+
     public override void OnNetworkSpawn()
     {
+        online = true;
+
         DisableClientInput();
 
         cart = GameObject.Find("Rail").transform.Find("Cart").GetComponent<Cart>();
@@ -31,13 +35,11 @@ public class NetworkPlayer : NetworkBehaviour
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-        cart.ResetSpawnPositionsServerRpc();
+        if (IsServer)
+            cart.ResetSpawnPositionsServerRpc();
 
-        foreach(GameObject player in players)
+        foreach (GameObject player in players)
         {
-            if (player == gameObject)
-                continue;
-
             NetworkPlayer networkPlayer = player.GetComponent<NetworkPlayer>();
 
             networkPlayer.SetCartTransform();
@@ -72,18 +74,18 @@ public class NetworkPlayer : NetworkBehaviour
                 controller.enableInputTracking = false;
             }
 
-            foreach(var hand in clientHandControllers)
+            foreach (var hand in clientHandControllers)
             {
                 hand.enabled = false;
             }
 
-            foreach(var hand in clientHandAnimators)
+            foreach (var hand in clientHandAnimators)
             {
                 hand.enabled = false;
             }
         }
     }
-    
+
     public void SetCartTransform()
     {
         cartTransform = cart.GetTransform();
@@ -91,6 +93,9 @@ public class NetworkPlayer : NetworkBehaviour
 
     private void Update()
     {
+        if (!online)
+            return;
+
         transform.position = cartTransform.position;
     }
 }

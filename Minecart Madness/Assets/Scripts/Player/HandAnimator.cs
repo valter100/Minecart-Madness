@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class HandAnimator : MonoBehaviour
+public class HandAnimator : NetworkBehaviour
 {
     [SerializeField] private float thumbMoveTime;
     [SerializeField] private Animator animator;
@@ -24,6 +25,9 @@ public class HandAnimator : MonoBehaviour
 
     private void Update()
     {
+        //if (!IsOwner)
+        //    return;
+
         if (handController.HandMode == HandMode.Dynamic)
             AnimateDynamicHand();
         else

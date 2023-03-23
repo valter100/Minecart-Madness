@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Coconut : MonoBehaviour
+public class Coconut : NetworkBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float stunTime;
     [SerializeField] private bool active;
 
@@ -17,13 +18,13 @@ public class Coconut : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!active)
+        if (!active /*|| !IsOwner*/)
             return;
 
         if (collision.gameObject.tag == "Enemy")
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.TakeDamage(damage);
+            enemy.TakeDamageServerRPC(damage);
             enemy.Stun(stunTime);
         }
     }
