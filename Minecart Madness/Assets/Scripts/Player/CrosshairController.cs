@@ -63,7 +63,7 @@ public class CrosshairController : MonoBehaviour
                 Vector3 move = 0.2f * difference + 0.06f * difference * difference.magnitude;
 
                 // Bias the move when directed towards the camera
-                ///float dot = Vector3.Dot(move.normalized, (cameraTransform.position - crosshair.transform.position).normalized);
+                //float dot = Vector3.Dot(move.normalized, (cameraTransform.position - crosshair.transform.position).normalized);
                 //move *= 0.3f * (dot * dot) + 1f;
 
                 // Clamp move to maximum 95% of difference

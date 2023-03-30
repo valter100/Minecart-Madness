@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7331891910206396971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94c181cff47f6a4bbae741a5255f179, type: 3}
+  m_Name: ScreenFadeFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    isEnabled: 1
+    profilerTag: Screen Fade
+    renderPassEvent: 600
+    material: {fileID: 2100000, guid: 7cdebbc6f9266624fb8a8d31e98ef0c1, type: 2}
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21,7 +39,7 @@ MonoBehaviour:
     NormalSamples: 0
     Intensity: 0.5
     DirectLightingStrength: 0.25
-    Radius: 0.25
+    Radius: 0.4
     SampleCount: 4
 --- !u!114 &11400000
 MonoBehaviour:
@@ -40,7 +58,8 @@ MonoBehaviour:
       type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  m_RendererFeatureMap: adc0de57c6d2eee5
+  - {fileID: -7331891910206396971}
+  m_RendererFeatureMap: adc0de57c6d2eee5d565965827e33f9a
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}

@@ -27,6 +27,8 @@ public class HandController : NetworkBehaviour
     private float gripValue;
     private bool primaryTouched;
     private bool secondaryTouched;
+    private bool primaryPressed;
+    private bool secondaryPressed;
 
     public bool HoveringInteractable => hoveringInteractable;
     public HandMode HandMode => handMode;
@@ -37,6 +39,8 @@ public class HandController : NetworkBehaviour
     public float GripValue => gripValue;
     public bool PrimaryTouched => primaryTouched;
     public bool SecondaryTouched => secondaryTouched;
+    public bool PrimaryPressed => primaryPressed;
+    public bool SecondaryPressed => secondaryPressed;
 
     private void Start()
     {
@@ -81,6 +85,8 @@ public class HandController : NetworkBehaviour
         inputDevice.TryGetFeatureValue(CommonUsages.grip, out gripValue);
         inputDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out primaryTouched);
         inputDevice.TryGetFeatureValue(CommonUsages.secondaryTouch, out secondaryTouched);
+        inputDevice.TryGetFeatureValue(CommonUsages.primaryButton, out primaryPressed);
+        inputDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryPressed);
     }
 
     private void DetermineState()

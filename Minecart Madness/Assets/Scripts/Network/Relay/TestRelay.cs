@@ -7,10 +7,11 @@ using Unity.Networking.Transport.Relay;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestRelay : MonoBehaviour
 {
-    [SerializeField] TMP_InputField inputField;
+    //[SerializeField] TMP_InputField inputField;
     [SerializeField] TMP_Text playerText;
     [SerializeField] TouchScreenKeyboard keyboard;
     [SerializeField] string joinCode;
@@ -40,16 +41,20 @@ public class TestRelay : MonoBehaviour
         }
     }
 
-    public async void JoinRelay()
+    /// <summary>
+    /// Is called by join button
+    /// </summary>
+    public async void JoinRelay(GameObject inputField)
     {
-        if (string.IsNullOrEmpty(inputField.text))
+        string input = inputField.GetComponent<InputField>().text;
+
+        if (string.IsNullOrEmpty(input))
             return;
 
         try
         {
-            Debug.Log("Joining Relay with code: " + inputField.text);
-            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(inputField.text);
-
+            Debug.Log("Joining Relay with code: " + input);
+            JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(input);
 
             RelayServerData relayServerData = new RelayServerData(joinAllocation, "dtls");
 
@@ -57,7 +62,7 @@ public class TestRelay : MonoBehaviour
 
             NetworkManager.Singleton.StartClient();
 
-            SceneTransitionHandler.LoadSceneByName("Level 1");
+            SceneTransitioner.Instance.FadeLoad("Level 1");
         }
         catch (RelayServiceException ex)
         {
