@@ -53,7 +53,7 @@ public class Obstacle : NetworkBehaviour
     {
         if(other.tag == "Cart")
         {
-            other.GetComponent<Cart>().SlowCartByPercentage(slowPercentage/100, slowDuration);
+            other.GetComponent<Cart>().SlowCartByPercentage(slowPercentage, slowDuration);
             TakeDamageServerRPC(currentHealth.Value);
         }
     }

@@ -8,6 +8,16 @@ public class Enemy : NetworkBehaviour
     [SerializeField] int maxHealth;
     [SerializeField] NetworkVariable<int>  currentHealth = new NetworkVariable<int>();
     [SerializeField] HealthBar healthBar;
+    [SerializeField] Cart cart;
+    [SerializeField] float movementSpeed;
+    //[SerializeField] LayerMask terrainMask;
+    //[SerializeField] LayerMask cartMask;
+
+    float distanceToCart;
+    Vector3 movementDirection;
+    [SerializeField] float attackRange;
+    [SerializeField] float timeBetweenAttacks;
+    float timeSinceLastAttack;
 
     private void Update()
     {
@@ -15,12 +25,40 @@ public class Enemy : NetworkBehaviour
         {
             TakeDamageServerRPC(5);
         }
+
+        distanceToCart = Vector3.Distance(transform.position, cart.transform.position);
+        movementDirection = (cart.transform.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(movementDirection);
+
+        if (distanceToCart < attackRange)
+        {
+            if(timeSinceLastAttack >= timeBetweenAttacks)
+            {
+                GetComponent<Animator>().Play("Attack");
+                cart.SlowCartByPercentage(50, 1);
+                Debug.Log("Attacking!");
+                timeSinceLastAttack = 0;
+            }
+        }
+        else
+        {
+            Move();
+            Debug.Log("Moving!");
+        }
+
+        timeSinceLastAttack += Time.deltaTime;
     }
 
     // Start is called before the first frame update
     public override void OnNetworkSpawn()
     {
         currentHealth.Value = maxHealth;
+        cart = FindObjectOfType<Cart>();
+    }
+
+    private void Start()
+    {
+        cart = FindObjectOfType<Cart>();
     }
 
     [ServerRpc]
@@ -53,5 +91,20 @@ public class Enemy : NetworkBehaviour
     public void Stun(float seconds)
     {
 
+    }
+
+    public void Move()
+    {
+        RaycastHit hit;
+        
+        if(Physics.Raycast(transform.position, movementDirection, out hit, 1))
+        {
+            if(hit.collider.gameObject.tag == "Terrain")
+            {
+                movementDirection = new Vector3(movementDirection.x/2, 1, movementDirection.z/2);
+            }
+        }
+
+        transform.position += movementDirection * movementSpeed * Time.deltaTime;
     }
 }

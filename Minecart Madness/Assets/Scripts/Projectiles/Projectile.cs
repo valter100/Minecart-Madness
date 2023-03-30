@@ -113,6 +113,11 @@ public class Projectile : NetworkBehaviour
 
         collided = true;
 
+        if(collision.gameObject.tag == "Target")
+        {
+            collision.gameObject.GetComponent<Target>().GiveScore();
+        }
+
         // Deal damage
         if (damage != 0)
         {
@@ -121,6 +126,11 @@ public class Projectile : NetworkBehaviour
 
             //else if (collision.gameObject.tag == "Cart")
                 //collision.gameObject.GetComponent<Cart>().TakeDamage(damage);
+        }
+
+        if(collision.gameObject.tag == "Terrain")
+        {
+            FindObjectOfType<GameManager>().ResetMultiplier();
         }
 
         ContactPoint contact = collision.contacts[0];

@@ -24,6 +24,12 @@ public class Cart : NetworkBehaviour
 
     [SerializeField] private LayerMask trackLayer;
 
+    [SerializeField] GameObject enemyObject;
+    [SerializeField] float enemySpawnInterval;
+    [SerializeField] float minimumSpawnRange;
+    [SerializeField] float maximumSpawnRange;
+    float timeSinceLastEnemySpawn;
+
     private void Start()
     {
         StartMoving(); //REMOVE
@@ -39,6 +45,12 @@ public class Cart : NetworkBehaviour
             HandleSlow();
         }
 
+        timeSinceLastEnemySpawn += Time.deltaTime;
+        if(timeSinceLastEnemySpawn >= enemySpawnInterval)
+        {
+            timeSinceLastEnemySpawn = 0;
+            SpawnEnemy();
+        }
         //RelegateSpeed();
     }
 
@@ -100,12 +112,15 @@ public class Cart : NetworkBehaviour
 
     public void SlowCartByPercentage(float slowPercentage, float duration)
     {
+        if (slowed)
+            return;
+
         GetComponent<Animator>().Play("Crash");
 
         slowed = true;
         speedBeforeSlow = curveFollower.speed;
 
-        curveFollower.speed /= (1 + slowPercentage);
+        curveFollower.speed /= (1 + slowPercentage / 100);
         slowDuration = duration;
     }
 
@@ -122,4 +137,11 @@ public class Cart : NetworkBehaviour
         }
     }
 
+    public void SpawnEnemy()
+    {
+        Vector2 spawnAroundCart = Random.insideUnitCircle * Random.Range(minimumSpawnRange, maximumSpawnRange);
+
+        Vector3 enemySpawnLocation = new Vector3(spawnAroundCart.x, transform.position.y + Random.Range(1, 10), spawnAroundCart.y);
+        Instantiate(enemyObject, enemySpawnLocation, Quaternion.identity);
+    }
 }
