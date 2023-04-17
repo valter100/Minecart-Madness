@@ -29,7 +29,7 @@ public class Obstacle : NetworkBehaviour
         }
 
         currentHealth.Value -= damage;
-        healthBar.UpdateHealthBarClientRpc((float)currentHealth.Value / (float)maxHealth);
+        healthBar.UpdateHealthBar((float)currentHealth.Value / (float)maxHealth);
 
         if (currentHealth.Value <= 0 && IsHost)
         {

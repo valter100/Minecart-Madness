@@ -101,11 +101,9 @@ public class Cart : NetworkBehaviour
     public void RelegateSpeed()
     {
         RaycastHit hit;
-        Debug.Log("Trying to hit track!");
         Debug.DrawRay(transform.position + new Vector3(0, 5, 0), Vector3.down*100, Color.yellow);
         if (Physics.Raycast(transform.position + new Vector3(0, 5, 0), Vector3.down, out hit, Mathf.Infinity, trackLayer))
         {
-            Debug.Log("Hitting track!");
             curveFollower.speed = Mathf.Clamp(curveFollower.speed += hit.normal.normalized.x * Time.deltaTime * speedShift, -maxSpeed, maxSpeed);
         }
     }
@@ -142,6 +140,7 @@ public class Cart : NetworkBehaviour
         Vector2 spawnAroundCart = Random.insideUnitCircle * Random.Range(minimumSpawnRange, maximumSpawnRange);
 
         Vector3 enemySpawnLocation = new Vector3(spawnAroundCart.x, transform.position.y + Random.Range(1, 10), spawnAroundCart.y);
-        Instantiate(enemyObject, enemySpawnLocation, Quaternion.identity);
+        GameObject spawnedEnemy = Instantiate(enemyObject, enemySpawnLocation, Quaternion.identity);
+        spawnedEnemy.GetComponent<NetworkObject>().Spawn(true);
     }
 }

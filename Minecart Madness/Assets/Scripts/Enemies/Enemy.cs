@@ -10,6 +10,7 @@ public class Enemy : NetworkBehaviour
     [SerializeField] HealthBar healthBar;
     [SerializeField] Cart cart;
     [SerializeField] float movementSpeed;
+    [SerializeField] int scoreGiven;
     //[SerializeField] LayerMask terrainMask;
     //[SerializeField] LayerMask cartMask;
 
@@ -23,6 +24,7 @@ public class Enemy : NetworkBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Taking damage!");
             TakeDamageServerRPC(5);
         }
 
@@ -43,7 +45,6 @@ public class Enemy : NetworkBehaviour
         else
         {
             Move();
-            Debug.Log("Moving!");
         }
 
         timeSinceLastAttack += Time.deltaTime;
@@ -64,13 +65,17 @@ public class Enemy : NetworkBehaviour
     [ServerRpc]
     public void TakeDamageServerRPC(int damage)
     {
+        Debug.Log("Taking damage on the server!");
+
         if (currentHealth.Value == maxHealth)
         {
             healthBar.gameObject.SetActive(true);
         }
 
         currentHealth.Value -= damage;
-        healthBar.UpdateHealthBarClientRpc((float)currentHealth.Value / (float)maxHealth);
+        GetComponent<Animator>().Play("Take Damage");
+
+        healthBar.UpdateHealthBar((float)currentHealth.Value / (float)maxHealth);
         Debug.Log("Enemy Health: " + currentHealth.Value);
         if(currentHealth.Value <= 0 && IsHost)
         {
@@ -84,7 +89,8 @@ public class Enemy : NetworkBehaviour
         if (!IsServer)
             return;
 
-        GetComponent<NetworkObject>().Despawn();
+        GetComponentInParent<NetworkObject>().Despawn();
+        FindObjectOfType<GameManager>().ChangeScore(scoreGiven);
         //Play death animation for all clients
     }
 
