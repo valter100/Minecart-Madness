@@ -11,14 +11,15 @@ public class Enemy : NetworkBehaviour
     [SerializeField] Cart cart;
     [SerializeField] float movementSpeed;
     [SerializeField] int scoreGiven;
-    //[SerializeField] LayerMask terrainMask;
-    //[SerializeField] LayerMask cartMask;
 
     float distanceToCart;
     Vector3 movementDirection;
+    [SerializeField] float specialAttackPercentage;
     [SerializeField] float attackRange;
     [SerializeField] float timeBetweenAttacks;
     float timeSinceLastAttack;
+    bool stunned;
+    float stunTimer;
 
     private void Update()
     {
@@ -26,6 +27,13 @@ public class Enemy : NetworkBehaviour
         {
             Debug.Log("Taking damage!");
             TakeDamageServerRPC(5);
+        }
+
+        if(stunned)
+        {
+            stunTimer -= Time.deltaTime;
+            if(stunTimer < 0)
+                stunned = false;
         }
 
         distanceToCart = Vector3.Distance(transform.position, cart.transform.position);
@@ -36,9 +44,20 @@ public class Enemy : NetworkBehaviour
         {
             if(timeSinceLastAttack >= timeBetweenAttacks)
             {
-                GetComponent<Animator>().Play("Attack");
-                cart.SlowCartByPercentage(50, 1);
-                Debug.Log("Attacking!");
+                int specialAttack = Random.Range(0, 100);
+                if(specialAttack < specialAttackPercentage)
+                {
+                    //special attack;
+                    
+                    Stun(3);
+                }
+                else
+                {
+                    GetComponent<Animator>().Play("Attack");
+                    cart.SlowCartByPercentage(50, 1);
+                    Debug.Log("Attacking!");
+                }
+
                 timeSinceLastAttack = 0;
             }
         }
@@ -96,7 +115,8 @@ public class Enemy : NetworkBehaviour
 
     public void Stun(float seconds)
     {
-
+        stunned = true;
+        stunTimer = seconds;
     }
 
     public void Move()
