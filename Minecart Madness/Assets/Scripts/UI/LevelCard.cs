@@ -33,6 +33,7 @@ public class LevelCard : MonoBehaviour
     private IEnumerator Coroutine_DelayedCreateRelay()
     {
         yield return new WaitForSeconds(SceneTransitioner.Instance.screenFade.duration);
+        yield return null;
         NetworkManager.Singleton.GetComponent<TestRelay>().CreateRelay();
     }
 }
