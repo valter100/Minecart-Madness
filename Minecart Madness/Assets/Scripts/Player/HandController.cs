@@ -4,6 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
 
 public enum HandType { Left, Right }
 public enum HandState { Closed, Grabbing, Hovering, Aiming, Casting }
@@ -14,10 +15,10 @@ public class HandController : NetworkBehaviour
     [SerializeField] private HandMode handMode;
     [SerializeField] private HandType handType;
     [SerializeField] private XRRayInteractor rayInteractor;
+    [SerializeField] private ControllerVelocity controllerVelocity;
+    [SerializeField] private Camera playerCamera;
+    //[SerializeField] private ActionBasedController actionBasedController;
 
-    private SpellCaster spellCaster;
-    private HandAnimator handAnimator;
-    
     private bool hoveringInteractable;
     private HandState handState;
     private HandState oldHandState;
@@ -41,6 +42,8 @@ public class HandController : NetworkBehaviour
     public bool SecondaryTouched => secondaryTouched;
     public bool PrimaryPressed => primaryPressed;
     public bool SecondaryPressed => secondaryPressed;
+    public Vector3 Velocity => controllerVelocity.Velocity;
+    public Camera PlayerCamera => playerCamera;
 
     private void Start()
     {
@@ -62,22 +65,12 @@ public class HandController : NetworkBehaviour
         }
     }
 
-    public void LinkHand(HandAnimator handAnimator)
-    {
-        this.handAnimator = handAnimator;
-        spellCaster = handAnimator.GetComponent<SpellCaster>();
-    }
-
     private void Update()
     {
         GetInputValues();
         DetermineState();
         UpdateInteractionLayers();
-
-        if (handState == HandState.Casting)
-            spellCaster.TryCastSpell();
     }
-
    
     private void GetInputValues()
     {

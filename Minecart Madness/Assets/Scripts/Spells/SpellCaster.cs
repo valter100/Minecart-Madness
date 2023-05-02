@@ -7,11 +7,14 @@ public class SpellCaster : NetworkBehaviour
 {
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private Transform firePoint;
+
     [Range(0f, 20f)]
     [SerializeField] private float fireRate;
     [SerializeField] private CrosshairController crosshairController;
-    [SerializeField] NetworkPlayer player;
+    [SerializeField] private NetworkPlayer player;
+    [SerializeField] private ParticleSystem particleSystem;
 
+    private HandController handController;
     private float cooldown;
 
     public override void OnNetworkSpawn()
@@ -19,18 +22,14 @@ public class SpellCaster : NetworkBehaviour
         player = GetComponentInParent<NetworkPlayer>();
     }
 
+    private void Start()
+    {
+        handController = GetComponentInParent<HandController>();
+    }
+
     public void SetSpell(GameObject spellPrefab)
     {
         this.spellPrefab = spellPrefab;
-    }
-
-    public void TryCastSpell()
-    {
-        if (cooldown == 0f && !player.Stunned())
-        {
-            cooldown = 1f / fireRate;
-            CastSpell();
-        }
     }
 
     private void Update()
@@ -41,6 +40,34 @@ public class SpellCaster : NetworkBehaviour
 
             if (cooldown < 0f)
                 cooldown = 0f;
+        }
+
+        if (handController && particleSystem)
+        {
+            if (handController.HandState == HandState.Aiming || handController.HandState == HandState.Casting)
+            {
+                if (particleSystem.isStopped)
+                    particleSystem.Play(true);
+
+                if (handController.HandState == HandState.Casting)
+                    TryCastSpell();
+            }
+
+            else
+            {
+                if (particleSystem.isPlaying)
+                    particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            }
+        }
+    }
+
+    [ContextMenu("Try Cast Spell")]
+    public void TryCastSpell()
+    {
+        if (cooldown == 0f /*&& !player.Stunned()*/)
+        {
+            cooldown = 1f / fireRate;
+            CastSpell();
         }
     }
 

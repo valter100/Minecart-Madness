@@ -15,7 +15,6 @@ public class HandAnimator : NetworkBehaviour
     private void Start()
     {
         handController = GetComponentInParent<HandController>();
-        handController.LinkHand(this);
 
         if (handController.HandMode == HandMode.Dynamic)
             animator.SetTrigger("Dynamic");
