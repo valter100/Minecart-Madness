@@ -10,8 +10,14 @@ public class SpellCaster : NetworkBehaviour
     [Range(0f, 20f)]
     [SerializeField] private float fireRate;
     [SerializeField] private CrosshairController crosshairController;
+    [SerializeField] NetworkPlayer player;
 
     private float cooldown;
+
+    public override void OnNetworkSpawn()
+    {
+        player = GetComponentInParent<NetworkPlayer>();
+    }
 
     public void SetSpell(GameObject spellPrefab)
     {
@@ -20,7 +26,7 @@ public class SpellCaster : NetworkBehaviour
 
     public void TryCastSpell()
     {
-        if (cooldown == 0f)
+        if (cooldown == 0f && !player.Stunned())
         {
             cooldown = 1f / fireRate;
             CastSpell();

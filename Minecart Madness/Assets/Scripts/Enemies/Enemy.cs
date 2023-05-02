@@ -18,7 +18,7 @@ public class Enemy : NetworkBehaviour
     [SerializeField] float attackRange;
     [SerializeField] float timeBetweenAttacks;
     float timeSinceLastAttack;
-    bool stunned;
+    NetworkVariable<bool> stunned = new NetworkVariable<bool>();
     float stunTimer;
 
     private void Update()
@@ -29,11 +29,13 @@ public class Enemy : NetworkBehaviour
             TakeDamageServerRPC(5);
         }
 
-        if(stunned)
+        if(stunned.Value)
         {
             stunTimer -= Time.deltaTime;
             if(stunTimer < 0)
-                stunned = false;
+                stunned.Value = false;
+
+            return;
         }
 
         distanceToCart = Vector3.Distance(transform.position, cart.transform.position);
@@ -47,9 +49,7 @@ public class Enemy : NetworkBehaviour
                 int specialAttack = Random.Range(0, 100);
                 if(specialAttack < specialAttackPercentage)
                 {
-                    //special attack;
-                    
-                    Stun(3);
+                    StartCoroutine(Chomp(5));
                 }
                 else
                 {
@@ -115,7 +115,7 @@ public class Enemy : NetworkBehaviour
 
     public void Stun(float seconds)
     {
-        stunned = true;
+        stunned.Value = true;
         stunTimer = seconds;
     }
 
@@ -132,5 +132,23 @@ public class Enemy : NetworkBehaviour
         }
 
         transform.position += movementDirection * movementSpeed * Time.deltaTime;
+    }
+
+    public IEnumerator Chomp(float duration)
+    {
+        Stun(duration);
+        NetworkPlayer[] players = FindObjectsOfType<NetworkPlayer>();
+        NetworkPlayer hitPlayer = players[Random.Range(0, players.Length)];
+        hitPlayer.SetStunned(true);
+
+        while(stunned.Value)
+        {
+            transform.position = hitPlayer.cameraTransform().position;
+            transform.rotation = hitPlayer.cameraTransform().rotation;
+            yield return null;
+        }
+
+        hitPlayer.SetStunned(false);
+        yield return 0;
     }
 }

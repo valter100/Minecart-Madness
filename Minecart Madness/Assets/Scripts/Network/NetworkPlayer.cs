@@ -14,8 +14,10 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] GameObject cameraObject;
     Cart cart;
     GameObject canvasObject;
+    [SerializeField] GameObject chompedCanvas;
 
     bool online;
+    NetworkVariable<bool> stunned = new NetworkVariable<bool>();
 
     public override void OnNetworkSpawn()
     {
@@ -98,4 +100,13 @@ public class NetworkPlayer : NetworkBehaviour
 
         transform.position = cartTransform.position;
     }
+
+    public void SetStunned(bool state)
+    {
+        stunned.Value = state;
+
+        chompedCanvas.SetActive(state);
+    }
+    public bool Stunned() => stunned.Value;
+    public Transform cameraTransform() => cameraObject.transform;
 }
