@@ -17,14 +17,10 @@ public class SpellCaster : NetworkBehaviour
     private HandController handController;
     private float cooldown;
 
-    public override void OnNetworkSpawn()
-    {
-        player = GetComponentInParent<NetworkPlayer>();
-    }
-
     private void Start()
     {
         handController = GetComponentInParent<HandController>();
+        player = GetComponentInParent<NetworkPlayer>();
     }
 
     public void SetSpell(GameObject spellPrefab)
@@ -64,7 +60,7 @@ public class SpellCaster : NetworkBehaviour
     [ContextMenu("Try Cast Spell")]
     public void TryCastSpell()
     {
-        if (cooldown == 0f /*&& !player.Stunned()*/)
+        if (cooldown == 0f && !player.Stunned())
         {
             cooldown = 1f / fireRate;
             CastSpell();

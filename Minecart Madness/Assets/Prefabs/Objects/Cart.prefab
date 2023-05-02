@@ -1753,6 +1753,10 @@ MonoBehaviour:
   trackLayer:
     serializedVersion: 2
     m_Bits: 1024
+  enemyObject: {fileID: 0}
+  enemySpawnInterval: 8
+  minimumSpawnRange: 8
+  maximumSpawnRange: 30
 --- !u!114 &8841985494646243132
 MonoBehaviour:
   m_ObjectHideFlags: 0

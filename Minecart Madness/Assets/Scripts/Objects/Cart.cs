@@ -32,7 +32,7 @@ public class Cart : NetworkBehaviour
 
     private void Start()
     {
-        StartMoving(); //REMOVE
+        //StartMoving(); //REMOVE
     }
 
     private void Update()

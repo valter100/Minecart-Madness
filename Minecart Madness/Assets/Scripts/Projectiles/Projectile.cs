@@ -124,8 +124,11 @@ public class Projectile : NetworkBehaviour
             if (collision.gameObject.tag == "Enemy" && IsOwner)
                 collision.gameObject.GetComponent<Enemy>().TakeDamageServerRPC(damage);
 
+            if (collision.gameObject.tag == "Obstacle" && IsOwner)
+                collision.gameObject.GetComponent<Obstacle>().TakeDamageServerRPC(damage);
+
             //else if (collision.gameObject.tag == "Cart")
-                //collision.gameObject.GetComponent<Cart>().TakeDamage(damage);
+            //collision.gameObject.GetComponent<Cart>().TakeDamage(damage);
         }
 
         if(collision.gameObject.tag == "Terrain")

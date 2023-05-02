@@ -57,4 +57,13 @@ public class Obstacle : NetworkBehaviour
             TakeDamageServerRPC(currentHealth.Value);
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Cart")
+    //    {
+    //        collision.gameObject.GetComponent<Cart>().SlowCartByPercentage(slowPercentage, slowDuration);
+    //        TakeDamageServerRPC(currentHealth.Value);
+    //    }
+    //}
 }

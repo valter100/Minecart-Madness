@@ -72,7 +72,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.228, y: -0.217}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -131,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7557165886499895695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -217,11 +217,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 7200781987242796959}
+  fillImage: {fileID: 3148995502770488978}
   healthbarColors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 0.9339623, g: 0.524421, b: 0, a: 0}
   - {r: 0, g: 1, b: 0.015367031, a: 0}
-  fillImage: {fileID: 3148995502770488978}
 --- !u!1 &3625458109569001461
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,10 +3838,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.2040167
+  m_Radius: 0.7330024
+  m_Height: 2.361886
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1132946, z: 0}
+  m_Center: {x: 0, y: 1.5134346, z: 0.038853884}
 --- !u!114 &5175176985741205497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3854,13 +3854,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b470c2c3f760443bbd1ff8f81377a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 24
+  maxHealth: 8
   currentHealth:
     m_InternalValue: 0
   healthBar: {fileID: 7587145352378869761}
   cart: {fileID: 0}
   movementSpeed: 2.5
   scoreGiven: 5
+  specialAttackPercentage: 20
   attackRange: 2
   timeBetweenAttacks: 2
 --- !u!4 &275554925244880117 stripped

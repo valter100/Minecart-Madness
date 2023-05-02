@@ -74,6 +74,7 @@ public class Enemy : NetworkBehaviour
     {
         currentHealth.Value = maxHealth;
         cart = FindObjectOfType<Cart>();
+        healthBar.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -139,6 +140,10 @@ public class Enemy : NetworkBehaviour
         Stun(duration);
         NetworkPlayer[] players = FindObjectsOfType<NetworkPlayer>();
         NetworkPlayer hitPlayer = players[Random.Range(0, players.Length)];
+        
+        if (hitPlayer.Stunned())
+            yield return 0;
+
         hitPlayer.SetStunned(true);
 
         while(stunned.Value)
