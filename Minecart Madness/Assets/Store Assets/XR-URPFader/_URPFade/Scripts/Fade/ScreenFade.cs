@@ -1,19 +1,18 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Pixelplacement;
+using UnityEngine.Device;
+using System.Collections;
 
 public class ScreenFade : MonoBehaviour
 {
     public static ScreenFade Instance { get; private set; }
 
-    // References
-    public UniversalRendererData rendererData = null;
-
-    // Settings
+    [SerializeField] private UniversalRendererData rendererData;
     [Range(0f, 5f)] public float duration = 0.5f;
 
-    // Runtime
-    private Material fadeMaterial = null;
+    private ScreenFadeFeature screenFadeFeature;
+    private Material fadeMaterial;
 
     private void Start()
     {
@@ -25,14 +24,12 @@ public class ScreenFade : MonoBehaviour
     {
         // Look for the screen fade feature
         ScriptableRendererFeature feature = rendererData.rendererFeatures.Find(item => item is ScreenFadeFeature);
+        screenFadeFeature = (ScreenFadeFeature)feature;
 
-        // Ensure it's the correct feature
-        if (feature is ScreenFadeFeature screenFade)
-        {
-            // Duplicate material so we don't change the renderer's asset
-            fadeMaterial = Instantiate(screenFade.settings.material);
-            screenFade.settings.runTimeMaterial = fadeMaterial;
-        }
+        // Duplicate material so we don't change the renderer's asset
+        fadeMaterial = Instantiate(screenFadeFeature.settings.material);
+        screenFadeFeature.settings.runTimeMaterial = fadeMaterial;
+        screenFadeFeature.settings.isEnabled = false;
     }
 
     /// <summary>
@@ -40,6 +37,7 @@ public class ScreenFade : MonoBehaviour
     /// </summary>
     public float FadeIn()
     {
+        screenFadeFeature.settings.isEnabled = true;
         Tween.ShaderFloat(fadeMaterial, "_Alpha", 1, duration, 0);
         return duration;
     }
@@ -49,7 +47,15 @@ public class ScreenFade : MonoBehaviour
     /// </summary>
     public float FadeOut()
     {
+        StartCoroutine(Coroutine_DisableFeature());
         Tween.ShaderFloat(fadeMaterial, "_Alpha", 0, duration, 0);
         return duration;
+    }
+
+    private IEnumerator Coroutine_DisableFeature()
+    {
+        yield return new WaitForSeconds(duration);
+        screenFadeFeature.settings.isEnabled = false;
+
     }
 }
