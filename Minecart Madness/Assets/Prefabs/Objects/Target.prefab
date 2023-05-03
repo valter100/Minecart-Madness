@@ -4925,7 +4925,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreAmount: 10
-  scoreCanvas: {fileID: 0}
+  scoreCanvas: {fileID: 4559208268968924310, guid: b5dda898c93923e46a79da21b7e458bb,
+    type: 3}
 --- !u!1 &7884454352288631493
 GameObject:
   m_ObjectHideFlags: 0
@@ -4935,7 +4936,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7644350688039720677}
-  - component: {fileID: 1825948301}
+  - component: {fileID: 1455734021}
   m_Layer: 0
   m_Name: Target
   m_TagString: Target
@@ -4959,7 +4960,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1825948301
+--- !u!95 &1455734021
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0

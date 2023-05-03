@@ -9,7 +9,7 @@ public class GameManager : NetworkBehaviour
     static NetworkVariable<int> score = new NetworkVariable<int>();
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text multiplierText;
-    static float scoreMultiplier;
+    public static float scoreMultiplier;
     [SerializeField] float maximumMultiplier;
     [SerializeField] float multiplierIncrements;
 

@@ -95,7 +95,7 @@ public class Enemy : NetworkBehaviour
         currentHealth.Value -= damage;
         GetComponent<Animator>().Play("Take Damage");
 
-        healthBar.UpdateHealthBar((float)currentHealth.Value / (float)maxHealth);
+        healthBar.UpdateHealthBar((float)((float)currentHealth.Value / (float)maxHealth));
         Debug.Log("Enemy Health: " + currentHealth.Value);
         if(currentHealth.Value <= 0 && IsHost)
         {

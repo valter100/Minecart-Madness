@@ -3861,9 +3861,9 @@ MonoBehaviour:
   cart: {fileID: 0}
   movementSpeed: 2.5
   scoreGiven: 5
-  specialAttackPercentage: 20
+  specialAttackPercentage: 18
   attackRange: 2
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 3
 --- !u!4 &275554925244880117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1464745901521183929, guid: 3b2bc9ea12bebd34db0ea2d87f964288,
