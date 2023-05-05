@@ -31,10 +31,17 @@ public class SceneTransitioner : MonoBehaviour
 
     private IEnumerator Coroutine_FadeLoad(string sceneName)
     {
+        // Fade in
         screenFade.FadeIn();
         yield return new WaitForSeconds(screenFade.duration);
+
+        // Wait two extra frames to ensure the screen is completely black before loading scene
         yield return null;
+        yield return null; 
         SceneManager.LoadScene(sceneName);
+
+        // Wait for scene to load and player to spawn before fading out (estimate)
+        yield return new WaitForSeconds(1.5f); 
         screenFade.FadeOut();
     }
 

@@ -320,6 +320,42 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Menu Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""6931047b-00e9-49ef-88f4-3b2801d0c289"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""fde4d5f2-ecf3-4334-8d3c-87cdee0e79f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Oculus Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""608196dd-302d-419e-adc4-e034210f4173"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Oculus Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""28a94cdc-e2c0-475a-9b98-017552e982ad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -498,6 +534,50 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                     ""action"": ""Translate Anchor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ceacef8e-122a-4a1b-9e7b-345b367f1c69"",
+                    ""path"": ""<XRController>{LeftHand}/menuButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Menu Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc9f15b3-4986-4651-9491-1084d9c12098"",
+                    ""path"": ""<XRController>{LeftHand}/menu"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Generic XR Controller"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9739b31-91d4-47bb-af23-dc9eee21f957"",
+                    ""path"": ""<OculusTouchController>{LeftHand}/menu"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Oculus Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53ff8455-6652-4cb4-95c1-99f7a48527b4"",
+                    ""path"": ""<OculusRemote>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Oculus Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1219,6 +1299,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         m_XRILeftHandInteraction_UIPressValue = m_XRILeftHandInteraction.FindAction("UI Press Value", throwIfNotFound: true);
         m_XRILeftHandInteraction_RotateAnchor = m_XRILeftHandInteraction.FindAction("Rotate Anchor", throwIfNotFound: true);
         m_XRILeftHandInteraction_TranslateAnchor = m_XRILeftHandInteraction.FindAction("Translate Anchor", throwIfNotFound: true);
+        m_XRILeftHandInteraction_MenuButton = m_XRILeftHandInteraction.FindAction("Menu Button", throwIfNotFound: true);
+        m_XRILeftHandInteraction_Menu = m_XRILeftHandInteraction.FindAction("Menu", throwIfNotFound: true);
+        m_XRILeftHandInteraction_OculusMenu = m_XRILeftHandInteraction.FindAction("Oculus Menu", throwIfNotFound: true);
+        m_XRILeftHandInteraction_OculusStart = m_XRILeftHandInteraction.FindAction("Oculus Start", throwIfNotFound: true);
         // XRI LeftHand Locomotion
         m_XRILeftHandLocomotion = asset.FindActionMap("XRI LeftHand Locomotion", throwIfNotFound: true);
         m_XRILeftHandLocomotion_TeleportSelect = m_XRILeftHandLocomotion.FindAction("Teleport Select", throwIfNotFound: true);
@@ -1423,6 +1507,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
     private readonly InputAction m_XRILeftHandInteraction_UIPressValue;
     private readonly InputAction m_XRILeftHandInteraction_RotateAnchor;
     private readonly InputAction m_XRILeftHandInteraction_TranslateAnchor;
+    private readonly InputAction m_XRILeftHandInteraction_MenuButton;
+    private readonly InputAction m_XRILeftHandInteraction_Menu;
+    private readonly InputAction m_XRILeftHandInteraction_OculusMenu;
+    private readonly InputAction m_XRILeftHandInteraction_OculusStart;
     public struct XRILeftHandInteractionActions
     {
         private @XRIDefaultInputActions m_Wrapper;
@@ -1435,6 +1523,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         public InputAction @UIPressValue => m_Wrapper.m_XRILeftHandInteraction_UIPressValue;
         public InputAction @RotateAnchor => m_Wrapper.m_XRILeftHandInteraction_RotateAnchor;
         public InputAction @TranslateAnchor => m_Wrapper.m_XRILeftHandInteraction_TranslateAnchor;
+        public InputAction @MenuButton => m_Wrapper.m_XRILeftHandInteraction_MenuButton;
+        public InputAction @Menu => m_Wrapper.m_XRILeftHandInteraction_Menu;
+        public InputAction @OculusMenu => m_Wrapper.m_XRILeftHandInteraction_OculusMenu;
+        public InputAction @OculusStart => m_Wrapper.m_XRILeftHandInteraction_OculusStart;
         public InputActionMap Get() { return m_Wrapper.m_XRILeftHandInteraction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1468,6 +1560,18 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @TranslateAnchor.started -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnTranslateAnchor;
                 @TranslateAnchor.performed -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnTranslateAnchor;
                 @TranslateAnchor.canceled -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnTranslateAnchor;
+                @MenuButton.started -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnMenuButton;
+                @MenuButton.performed -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnMenuButton;
+                @MenuButton.canceled -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnMenuButton;
+                @Menu.started -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnMenu;
+                @OculusMenu.started -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnOculusMenu;
+                @OculusMenu.performed -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnOculusMenu;
+                @OculusMenu.canceled -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnOculusMenu;
+                @OculusStart.started -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnOculusStart;
+                @OculusStart.performed -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnOculusStart;
+                @OculusStart.canceled -= m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface.OnOculusStart;
             }
             m_Wrapper.m_XRILeftHandInteractionActionsCallbackInterface = instance;
             if (instance != null)
@@ -1496,6 +1600,18 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
                 @TranslateAnchor.started += instance.OnTranslateAnchor;
                 @TranslateAnchor.performed += instance.OnTranslateAnchor;
                 @TranslateAnchor.canceled += instance.OnTranslateAnchor;
+                @MenuButton.started += instance.OnMenuButton;
+                @MenuButton.performed += instance.OnMenuButton;
+                @MenuButton.canceled += instance.OnMenuButton;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+                @OculusMenu.started += instance.OnOculusMenu;
+                @OculusMenu.performed += instance.OnOculusMenu;
+                @OculusMenu.canceled += instance.OnOculusMenu;
+                @OculusStart.started += instance.OnOculusStart;
+                @OculusStart.performed += instance.OnOculusStart;
+                @OculusStart.canceled += instance.OnOculusStart;
             }
         }
     }
@@ -1834,6 +1950,10 @@ public partial class @XRIDefaultInputActions : IInputActionCollection2, IDisposa
         void OnUIPressValue(InputAction.CallbackContext context);
         void OnRotateAnchor(InputAction.CallbackContext context);
         void OnTranslateAnchor(InputAction.CallbackContext context);
+        void OnMenuButton(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
+        void OnOculusMenu(InputAction.CallbackContext context);
+        void OnOculusStart(InputAction.CallbackContext context);
     }
     public interface IXRILeftHandLocomotionActions
     {

@@ -35,5 +35,6 @@ public class LevelCard : MonoBehaviour
         yield return new WaitForSeconds(SceneTransitioner.Instance.screenFade.duration);
         yield return null;
         NetworkManager.Singleton.GetComponent<TestRelay>().CreateRelay();
+        yield return 0;
     }
 }
